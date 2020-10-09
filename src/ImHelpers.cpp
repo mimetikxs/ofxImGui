@@ -846,6 +846,29 @@ void ofxImGui::AddImage(const ofTexture& texture, const glm::vec2& size)
 
 #endif
 
+//--------------------------------------------------------------
+bool ofxImGui::AddDrag(ofParameter<float>& parameter, float speed)
+{
+    auto tmpRef = parameter.get();
+    if (ImGui::DragFloat(ofxImGui::GetUniqueName(parameter.getName()), &tmpRef, speed, parameter.getMin(), parameter.getMax())) {
+        parameter.set(tmpRef);
+        return true;
+    }
+    return false;
+}
+
+//--------------------------------------------------------------
+bool ofxImGui::AddDrag(ofParameter<int>& parameter, float speed)
+{
+    auto tmpRef = parameter.get();
+    if (ImGui::DragInt(ofxImGui::GetUniqueName(parameter.getName()), &tmpRef, speed, parameter.getMin(), parameter.getMax())) {
+        parameter.set(tmpRef);
+        return true;
+    }
+    return false;
+}
+
+
 static auto vector_getter = [](void* vec, int idx, const char** out_text)
 {
     auto& vector = *static_cast<std::vector<std::string>*>(vec);

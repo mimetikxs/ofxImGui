@@ -124,6 +124,9 @@ namespace ofxImGui
     void AddImage(const ofBaseHasTexture& hasTexture, const glm::vec2& size);
     void AddImage(const ofTexture& texture, const glm::vec2& size);
 #endif
+    
+    bool AddDrag(ofParameter<float>& parameter, float speed = 0.01);
+    bool AddDrag(ofParameter<int>& parameter, float speed = 0.01);
 }
 
 static ImTextureID GetImTextureID(const ofTexture& texture)
